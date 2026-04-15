@@ -6,56 +6,28 @@
 
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.hospital.controller.BookAppointmentController"
-      spacing="0" maxWidth="520">
+      spacing="10">
 
-    <!-- Page header -->
-    <VBox styleClass="page-header" spacing="4">
-        <Label text="📅  Book Appointment" styleClass="page-title"/>
-        <Label text="Schedule a patient–doctor appointment."
-               styleClass="page-subtitle"/>
-    </VBox>
+    <GridPane hgap="10" vgap="10">
+        <columnConstraints>
+            <ColumnConstraints minWidth="110" halignment="RIGHT"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+        <Label text="Appointment ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtApptId" GridPane.rowIndex="0" GridPane.columnIndex="1" editable="false"/>
 
-    <!-- Form card -->
-    <VBox styleClass="form-card" spacing="18">
+        <Label text="Patient:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="cmbPatient" GridPane.rowIndex="1" GridPane.columnIndex="1" promptText="Select patient"/>
 
-        <!-- Auto Appointment ID -->
-        <VBox spacing="4">
-            <Label text="Appointment ID (Auto-generated)" styleClass="field-label"/>
-            <TextField fx:id="txtApptId" styleClass="form-field" editable="false"
-                       style="-fx-background-color: #f3f4f6;"/>
-        </VBox>
+        <Label text="Doctor:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="cmbDoctor" GridPane.rowIndex="2" GridPane.columnIndex="1" promptText="Select doctor"/>
 
-        <!-- Select Patient -->
-        <VBox spacing="4">
-            <Label text="Select Patient *" styleClass="field-label"/>
-            <ComboBox fx:id="cmbPatient" maxWidth="Infinity" styleClass="form-field"
-                      promptText="-- Choose a patient --"/>
-        </VBox>
+        <Label text="Date:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <DatePicker fx:id="dpDate" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+    </GridPane>
 
-        <!-- Select Doctor -->
-        <VBox spacing="4">
-            <Label text="Select Doctor *" styleClass="field-label"/>
-            <ComboBox fx:id="cmbDoctor" maxWidth="Infinity" styleClass="form-field"
-                      promptText="-- Choose a doctor --"/>
-        </VBox>
-
-        <!-- Appointment Date -->
-        <VBox spacing="4">
-            <Label text="Appointment Date *" styleClass="field-label"/>
-            <DatePicker fx:id="dpDate" maxWidth="Infinity" styleClass="form-field"/>
-        </VBox>
-
-        <!-- Info note -->
-        <Label text="ℹ  Both patient and doctor must be registered before booking."
-               style="-fx-font-size: 11px; -fx-text-fill: #6b7280; -fx-font-style: italic;"/>
-
-        <!-- Buttons -->
-        <HBox spacing="12" alignment="CENTER_RIGHT">
-            <Button text="🗑  Clear" onAction="#handleClear"
-                    styleClass="btn-secondary"/>
-            <Button text="📅  Book Appointment" onAction="#handleBookAppointment"
-                    styleClass="btn-primary"/>
-        </HBox>
-
-    </VBox>
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Clear" onAction="#handleClear"/>
+        <Button text="Book Appointment" onAction="#handleBookAppointment"/>
+    </HBox>
 </VBox>

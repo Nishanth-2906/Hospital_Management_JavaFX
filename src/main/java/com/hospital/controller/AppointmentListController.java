@@ -103,9 +103,7 @@ public class AppointmentListController extends BaseController implements Initial
             showWarning("Please select an appointment to edit.");
             return;
         }
-        // Switch to Book Appointment tab and load data
         if (dashboard != null) {
-            dashboard.switchToTab("Book Appointment");
             BookAppointmentController bookController = dashboard.getBookAppointmentController();
             if (bookController != null) {
                 bookController.loadAppointmentForEditing(selected);

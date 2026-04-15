@@ -9,9 +9,9 @@
             prefWidth="1000" prefHeight="680">
 
     <top>
-        <HBox spacing="10">
+        <HBox spacing="12" alignment="CENTER_LEFT">
             <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
-            <Label text="Hospital Management System" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+            <Label text="Hospital Management System" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
             <Region HBox.hgrow="ALWAYS"/>
             <Button text="Refresh" onAction="#refreshStats"/>
             <Button text="Admin Mode" disable="true"/>
@@ -19,25 +19,48 @@
     </top>
 
     <center>
-        <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE">
-            <Tab text="Patient List">
-                <fx:include source="PatientList.fxml"/>
-            </Tab>
-            <Tab text="Doctor List">
-                <fx:include source="DoctorList.fxml"/>
-            </Tab>
-            <Tab text="Appointment List">
-                <fx:include source="AppointmentList.fxml"/>
-            </Tab>
-            <Tab text="Add Patient">
-                <fx:include source="AddPatient.fxml"/>
-            </Tab>
-            <Tab text="Add Doctor">
-                <fx:include source="AddDoctor.fxml"/>
-            </Tab>
-            <Tab text="Book Appointment">
-                <fx:include source="BookAppointment.fxml"/>
-            </Tab>
-        </TabPane>
+        <VBox spacing="12">
+            <padding><Insets top="12" right="12" bottom="6" left="12"/></padding>
+            <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" prefHeight="380">
+                <Tab text="Patients">
+                    <content>
+                        <AnchorPane fx:id="patientListRoot" />
+                    </content>
+                </Tab>
+                <Tab text="Doctors">
+                    <content>
+                        <AnchorPane fx:id="doctorListRoot" />
+                    </content>
+                </Tab>
+                <Tab text="Appointments">
+                    <content>
+                        <AnchorPane fx:id="appointmentListRoot" />
+                    </content>
+                </Tab>
+            </TabPane>
+        </VBox>
     </center>
+
+    <bottom>
+        <VBox spacing="12">
+            <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
+            <HBox spacing="12" alignment="TOP_LEFT">
+                <TitledPane text="Add Patient" collapsible="false" expanded="true">
+                    <content>
+                        <AnchorPane fx:id="addPatientRoot" />
+                    </content>
+                </TitledPane>
+                <TitledPane text="Add Doctor" collapsible="false" expanded="true">
+                    <content>
+                        <AnchorPane fx:id="addDoctorRoot" />
+                    </content>
+                </TitledPane>
+                <TitledPane text="Book Appointment" collapsible="false" expanded="true">
+                    <content>
+                        <AnchorPane fx:id="bookAppointmentRoot" />
+                    </content>
+                </TitledPane>
+            </HBox>
+        </VBox>
+    </bottom>
 </BorderPane>

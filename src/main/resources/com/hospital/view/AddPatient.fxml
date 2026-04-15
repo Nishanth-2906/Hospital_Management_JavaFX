@@ -6,53 +6,28 @@
 
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.hospital.controller.AddPatientController"
-      spacing="0" maxWidth="520">
+      spacing="10">
 
-    <!-- Page header -->
-    <VBox styleClass="page-header" spacing="4">
-        <Label text="➕  Add New Patient" styleClass="page-title"/>
-        <Label text="Register a new patient record into the system."
-               styleClass="page-subtitle"/>
-    </VBox>
+    <GridPane hgap="10" vgap="10">
+        <columnConstraints>
+            <ColumnConstraints minWidth="110" halignment="RIGHT"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+        <Label text="Patient ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtId" GridPane.rowIndex="0" GridPane.columnIndex="1" editable="false"/>
 
-    <!-- Form card -->
-    <VBox styleClass="form-card" spacing="18">
+        <Label text="Name:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtName" GridPane.rowIndex="1" GridPane.columnIndex="1" promptText="e.g. Arjun Sharma"/>
 
-        <!-- Auto ID (read-only) -->
-        <VBox spacing="4">
-            <Label text="Patient ID (Auto-generated)" styleClass="field-label"/>
-            <TextField fx:id="txtId" styleClass="form-field" editable="false"
-                       style="-fx-background-color: #f3f4f6;"/>
-        </VBox>
+        <Label text="Age:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtAge" GridPane.rowIndex="2" GridPane.columnIndex="1" promptText="e.g. 30"/>
 
-        <!-- Name -->
-        <VBox spacing="4">
-            <Label text="Full Name *" styleClass="field-label"/>
-            <TextField fx:id="txtName" promptText="e.g. Arjun Sharma"
-                       styleClass="form-field"/>
-        </VBox>
+        <Label text="Ailment:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtAilment" GridPane.rowIndex="3" GridPane.columnIndex="1" promptText="e.g. Fever"/>
+    </GridPane>
 
-        <!-- Age -->
-        <VBox spacing="4">
-            <Label text="Age *" styleClass="field-label"/>
-            <TextField fx:id="txtAge" promptText="e.g. 30"
-                       styleClass="form-field"/>
-        </VBox>
-
-        <!-- Ailment -->
-        <VBox spacing="4">
-            <Label text="Ailment / Condition" styleClass="field-label"/>
-            <TextField fx:id="txtAilment" promptText="e.g. Fever, Diabetes ..."
-                       styleClass="form-field"/>
-        </VBox>
-
-        <!-- Buttons -->
-        <HBox spacing="12" alignment="CENTER_RIGHT">
-            <Button text="🗑  Clear" onAction="#handleClear"
-                    styleClass="btn-secondary"/>
-            <Button text="✔  Add Patient" onAction="#handleAddPatient"
-                    styleClass="btn-primary"/>
-        </HBox>
-
-    </VBox>
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Clear" onAction="#handleClear"/>
+        <Button text="Add Patient" onAction="#handleAddPatient"/>
+    </HBox>
 </VBox>

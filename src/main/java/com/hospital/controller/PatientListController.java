@@ -84,9 +84,7 @@ public class PatientListController extends BaseController implements Initializab
             showWarning("Please select a patient to edit.");
             return;
         }
-        // Switch to Add Patient tab and load data
         if (dashboard != null) {
-            dashboard.switchToTab("Add Patient");
             AddPatientController addController = dashboard.getAddPatientController();
             if (addController != null) {
                 addController.loadPatientForEditing(selected);
