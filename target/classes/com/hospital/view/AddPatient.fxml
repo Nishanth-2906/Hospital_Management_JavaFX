@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.hospital.controller.AddPatientController"
+      spacing="0" maxWidth="520">
+
+    <!-- Page header -->
+    <VBox styleClass="page-header" spacing="4">
+        <Label text="➕  Add New Patient" styleClass="page-title"/>
+        <Label text="Register a new patient record into the system."
+               styleClass="page-subtitle"/>
+    </VBox>
+
+    <!-- Form card -->
+    <VBox styleClass="form-card" spacing="18">
+
+        <!-- Auto ID (read-only) -->
+        <VBox spacing="4">
+            <Label text="Patient ID (Auto-generated)" styleClass="field-label"/>
+            <TextField fx:id="txtId" styleClass="form-field" editable="false"
+                       style="-fx-background-color: #f3f4f6;"/>
+        </VBox>
+
+        <!-- Name -->
+        <VBox spacing="4">
+            <Label text="Full Name *" styleClass="field-label"/>
+            <TextField fx:id="txtName" promptText="e.g. Arjun Sharma"
+                       styleClass="form-field"/>
+        </VBox>
+
+        <!-- Age -->
+        <VBox spacing="4">
+            <Label text="Age *" styleClass="field-label"/>
+            <TextField fx:id="txtAge" promptText="e.g. 30"
+                       styleClass="form-field"/>
+        </VBox>
+
+        <!-- Ailment -->
+        <VBox spacing="4">
+            <Label text="Ailment / Condition" styleClass="field-label"/>
+            <TextField fx:id="txtAilment" promptText="e.g. Fever, Diabetes ..."
+                       styleClass="form-field"/>
+        </VBox>
+
+        <!-- Buttons -->
+        <HBox spacing="12" alignment="CENTER_RIGHT">
+            <Button text="🗑  Clear" onAction="#handleClear"
+                    styleClass="btn-secondary"/>
+            <Button text="✔  Add Patient" onAction="#handleAddPatient"
+                    styleClass="btn-primary"/>
+        </HBox>
+
+    </VBox>
+</VBox>

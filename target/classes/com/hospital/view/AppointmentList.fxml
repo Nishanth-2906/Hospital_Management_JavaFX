@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.hospital.controller.AppointmentListController"
+      spacing="0">
+
+    <!-- Page header -->
+    <VBox styleClass="page-header" spacing="4">
+        <Label text="📅  Appointment Records" styleClass="page-title"/>
+        <Label text="View all appointments and update their status."
+               styleClass="page-subtitle"/>
+    </VBox>
+
+    <VBox styleClass="form-card" spacing="12" VBox.vgrow="ALWAYS">
+
+        <!-- Toolbar row -->
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <TextField fx:id="txtSearch" promptText="🔍  Search by patient, doctor, date or status..."
+                       styleClass="form-field" prefWidth="360"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblCount" styleClass="count-label"/>
+            <Button text="🔄  Refresh"         onAction="#handleRefresh"     styleClass="btn-secondary"/>
+            <Button text="✅  Mark Complete"   onAction="#handleMarkComplete" styleClass="btn-success"/>
+            <Button text="❌  Cancel"          onAction="#handleCancel"       styleClass="btn-danger"/>
+        </HBox>
+
+        <!-- TableView -->
+        <TableView fx:id="tableAppts" VBox.vgrow="ALWAYS" styleClass="data-table">
+            <columns>
+                <TableColumn fx:id="colId"      text="Appt ID"       prefWidth="90"/>
+                <TableColumn fx:id="colPatient" text="Patient"        prefWidth="150"/>
+                <TableColumn fx:id="colDoctor"  text="Doctor"         prefWidth="150"/>
+                <TableColumn fx:id="colSpec"    text="Specialization" prefWidth="150"/>
+                <TableColumn fx:id="colDate"    text="Date"           prefWidth="110"/>
+                <TableColumn fx:id="colStatus"  text="Status"         prefWidth="110"/>
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+        </TableView>
+
+    </VBox>
+</VBox>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.hospital.controller.DoctorListController"
+      spacing="0">
+
+    <!-- Page header -->
+    <VBox styleClass="page-header" spacing="4">
+        <Label text="📋  Doctor Directory" styleClass="page-title"/>
+        <Label text="Browse, search and manage all registered doctors."
+               styleClass="page-subtitle"/>
+    </VBox>
+
+    <VBox styleClass="form-card" spacing="12" VBox.vgrow="ALWAYS">
+
+        <!-- Toolbar row -->
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <TextField fx:id="txtSearch" promptText="🔍  Search by name, ID or specialization..."
+                       styleClass="form-field" prefWidth="340"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblCount" styleClass="count-label"/>
+            <Button text="🔄  Refresh" onAction="#handleRefresh" styleClass="btn-secondary"/>
+            <Button text="🗑  Delete Selected" onAction="#handleDelete" styleClass="btn-danger"/>
+        </HBox>
+
+        <!-- TableView -->
+        <TableView fx:id="tableDoctors" VBox.vgrow="ALWAYS" styleClass="data-table">
+            <columns>
+                <TableColumn fx:id="colId"   text="Doctor ID"      prefWidth="100"/>
+                <TableColumn fx:id="colName" text="Name"           prefWidth="200"/>
+                <TableColumn fx:id="colAge"  text="Age"            prefWidth="70"/>
+                <TableColumn fx:id="colSpec" text="Specialization" prefWidth="200"/>
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+        </TableView>
+
+    </VBox>
+</VBox>

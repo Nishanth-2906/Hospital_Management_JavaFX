@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.hospital.controller.BookAppointmentController"
+      spacing="0" maxWidth="520">
+
+    <!-- Page header -->
+    <VBox styleClass="page-header" spacing="4">
+        <Label text="📅  Book Appointment" styleClass="page-title"/>
+        <Label text="Schedule a patient–doctor appointment."
+               styleClass="page-subtitle"/>
+    </VBox>
+
+    <!-- Form card -->
+    <VBox styleClass="form-card" spacing="18">
+
+        <!-- Auto Appointment ID -->
+        <VBox spacing="4">
+            <Label text="Appointment ID (Auto-generated)" styleClass="field-label"/>
+            <TextField fx:id="txtApptId" styleClass="form-field" editable="false"
+                       style="-fx-background-color: #f3f4f6;"/>
+        </VBox>
+
+        <!-- Select Patient -->
+        <VBox spacing="4">
+            <Label text="Select Patient *" styleClass="field-label"/>
+            <ComboBox fx:id="cmbPatient" maxWidth="Infinity" styleClass="form-field"
+                      promptText="-- Choose a patient --"/>
+        </VBox>
+
+        <!-- Select Doctor -->
+        <VBox spacing="4">
+            <Label text="Select Doctor *" styleClass="field-label"/>
+            <ComboBox fx:id="cmbDoctor" maxWidth="Infinity" styleClass="form-field"
+                      promptText="-- Choose a doctor --"/>
+        </VBox>
+
+        <!-- Appointment Date -->
+        <VBox spacing="4">
+            <Label text="Appointment Date *" styleClass="field-label"/>
+            <DatePicker fx:id="dpDate" maxWidth="Infinity" styleClass="form-field"/>
+        </VBox>
+
+        <!-- Info note -->
+        <Label text="ℹ  Both patient and doctor must be registered before booking."
+               style="-fx-font-size: 11px; -fx-text-fill: #6b7280; -fx-font-style: italic;"/>
+
+        <!-- Buttons -->
+        <HBox spacing="12" alignment="CENTER_RIGHT">
+            <Button text="🗑  Clear" onAction="#handleClear"
+                    styleClass="btn-secondary"/>
+            <Button text="📅  Book Appointment" onAction="#handleBookAppointment"
+                    styleClass="btn-primary"/>
+        </HBox>
+
+    </VBox>
+</VBox>
