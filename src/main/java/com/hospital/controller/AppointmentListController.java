@@ -97,6 +97,44 @@ public class AppointmentListController extends BaseController implements Initial
     }
 
     @FXML
+    private void handleEdit() {
+        Appointment selected = tableAppts.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            showWarning("Please select an appointment to edit.");
+            return;
+        }
+        // Switch to Book Appointment tab and load data
+        if (dashboard != null) {
+            dashboard.switchToTab("Book Appointment");
+            BookAppointmentController bookController = dashboard.getBookAppointmentController();
+            if (bookController != null) {
+                bookController.loadAppointmentForEditing(selected);
+            }
+        }
+    }
+
+    @FXML
+    private void handleDelete() {
+        Appointment selected = tableAppts.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            showWarning("Please select an appointment to delete.");
+            return;
+        }
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION,
+                "Delete appointment for \"" + selected.getPatientName() + "\"?",
+                ButtonType.YES, ButtonType.NO);
+        confirm.setTitle("Confirm Delete");
+        confirm.showAndWait().ifPresent(btn -> {
+            if (btn == ButtonType.YES) {
+                store.getAppointments().remove(selected);
+                showSuccess("Appointment removed.");
+                if (dashboard != null) dashboard.refreshStats();
+                updateCount();
+            }
+        });
+    }
+
+    @FXML
     private void handleRefresh() {
         txtSearch.clear();
         tableAppts.setItems(store.getAppointments());

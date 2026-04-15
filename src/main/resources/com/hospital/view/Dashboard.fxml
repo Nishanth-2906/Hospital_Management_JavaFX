@@ -19,167 +19,25 @@
     </top>
 
     <center>
-        <TabPane fx:id="tabPane" prefHeight="400">
-            <Tab text="Patients" closable="false">
-                <TableView fx:id="patientTable" prefHeight="360">
-                    <columns>
-                        <TableColumn text="ID" prefWidth="90">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="id"/>
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn text="Name" prefWidth="180">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="name"/>
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn text="Age" prefWidth="80">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="age"/>
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn text="Ailment" prefWidth="220">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="ailment"/>
-                            </cellValueFactory>
-                        </TableColumn>
-                    </columns>
-                </TableView>
+        <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE">
+            <Tab text="Patient List">
+                <fx:include source="PatientList.fxml"/>
             </Tab>
-            <Tab text="Doctors" closable="false">
-                <TableView fx:id="doctorTable" prefHeight="360">
-                    <columns>
-                        <TableColumn text="ID" prefWidth="90">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="id"/>
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn text="Name" prefWidth="180">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="name"/>
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn text="Age" prefWidth="80">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="age"/>
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn text="Specialization" prefWidth="220">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="specialization"/>
-                            </cellValueFactory>
-                        </TableColumn>
-                    </columns>
-                </TableView>
+            <Tab text="Doctor List">
+                <fx:include source="DoctorList.fxml"/>
             </Tab>
-            <Tab text="Appointments" closable="false">
-                <TableView fx:id="appointmentTable" prefHeight="360">
-                    <columns>
-                        <TableColumn text="ID" prefWidth="90">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="appointmentId"/>
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn text="Patient" prefWidth="170">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="patientName"/>
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn text="Doctor" prefWidth="170">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="doctorName"/>
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn text="Date" prefWidth="110">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="date"/>
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn text="Status" prefWidth="110">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="status"/>
-                            </cellValueFactory>
-                        </TableColumn>
-                    </columns>
-                </TableView>
+            <Tab text="Appointment List">
+                <fx:include source="AppointmentList.fxml"/>
+            </Tab>
+            <Tab text="Add Patient">
+                <fx:include source="AddPatient.fxml"/>
+            </Tab>
+            <Tab text="Add Doctor">
+                <fx:include source="AddDoctor.fxml"/>
+            </Tab>
+            <Tab text="Book Appointment">
+                <fx:include source="BookAppointment.fxml"/>
             </Tab>
         </TabPane>
     </center>
-
-    <bottom>
-        <VBox spacing="10">
-            <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
-            <HBox spacing="12">
-                <TitledPane text="Add Patient" collapsible="false" expanded="true">
-                    <content>
-                        <VBox spacing="10">
-                            <GridPane hgap="10" vgap="8">
-                                <columnConstraints>
-                                    <ColumnConstraints percentWidth="35"/>
-                                    <ColumnConstraints percentWidth="65"/>
-                                </columnConstraints>
-                                <Label text="Patient ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                                <TextField fx:id="patientIdField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-                                <Label text="Name:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                                <TextField fx:id="patientNameField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-                                <Label text="Age:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                                <TextField fx:id="patientAgeField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
-                                <Label text="Ailment:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-                                <TextField fx:id="patientAilmentField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
-                            </GridPane>
-                            <HBox spacing="8">
-                                <Button text="Add Patient" onAction="#addPatient"/>
-                            </HBox>
-                        </VBox>
-                    </content>
-                </TitledPane>
-
-                <TitledPane text="Add Doctor" collapsible="false" expanded="true">
-                    <content>
-                        <VBox spacing="10">
-                            <GridPane hgap="10" vgap="8">
-                                <columnConstraints>
-                                    <ColumnConstraints percentWidth="35"/>
-                                    <ColumnConstraints percentWidth="65"/>
-                                </columnConstraints>
-                                <Label text="Doctor ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                                <TextField fx:id="doctorIdField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-                                <Label text="Name:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                                <TextField fx:id="doctorNameField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-                                <Label text="Age:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                                <TextField fx:id="doctorAgeField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
-                                <Label text="Specialization:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-                                <TextField fx:id="doctorSpecializationField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
-                            </GridPane>
-                            <HBox spacing="8">
-                                <Button text="Add Doctor" onAction="#addDoctor"/>
-                            </HBox>
-                        </VBox>
-                    </content>
-                </TitledPane>
-            </HBox>
-
-            <TitledPane text="Book Appointment" collapsible="false" expanded="true">
-                <content>
-                    <VBox spacing="10">
-                        <GridPane hgap="10" vgap="8">
-                            <columnConstraints>
-                                <ColumnConstraints percentWidth="35"/>
-                                <ColumnConstraints percentWidth="65"/>
-                            </columnConstraints>
-                            <Label text="Patient:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                            <ComboBox fx:id="appointmentPatientCombo" GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="220"/>
-                            <Label text="Doctor:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                            <ComboBox fx:id="appointmentDoctorCombo" GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="220"/>
-                            <Label text="Date (YYYY-MM-DD):" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                            <TextField fx:id="appointmentDateField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
-                        </GridPane>
-                        <HBox spacing="8">
-                            <Button text="Book Appointment" onAction="#bookAppointment"/>
-                        </HBox>
-                    </VBox>
-                </content>
-            </TitledPane>
-        </VBox>
-    </bottom>
 </BorderPane>

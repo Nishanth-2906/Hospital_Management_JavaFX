@@ -74,6 +74,23 @@ public class DoctorListController extends BaseController implements Initializabl
     }
 
     @FXML
+    private void handleEdit() {
+        Doctor selected = tableDoctors.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            showWarning("Please select a doctor to edit.");
+            return;
+        }
+        // Switch to Add Doctor tab and load data
+        if (dashboard != null) {
+            dashboard.switchToTab("Add Doctor");
+            AddDoctorController addController = dashboard.getAddDoctorController();
+            if (addController != null) {
+                addController.loadDoctorForEditing(selected);
+            }
+        }
+    }
+
+    @FXML
     private void handleRefresh() {
         txtSearch.clear();
         tableDoctors.setItems(store.getDoctors());

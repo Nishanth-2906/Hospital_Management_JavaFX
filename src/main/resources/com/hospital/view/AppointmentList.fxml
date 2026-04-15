@@ -23,8 +23,10 @@
             <Region HBox.hgrow="ALWAYS"/>
             <Label fx:id="lblCount" styleClass="count-label"/>
             <Button text="🔄  Refresh"         onAction="#handleRefresh"     styleClass="btn-secondary"/>
+            <Button text="✏  Edit Selected"    onAction="#handleEdit"        styleClass="btn-primary"/>
             <Button text="✅  Mark Complete"   onAction="#handleMarkComplete" styleClass="btn-success"/>
-            <Button text="❌  Cancel"          onAction="#handleCancel"       styleClass="btn-danger"/>
+            <Button text="❌  Cancel"          onAction="#handleCancel"       styleClass="btn-warning"/>
+            <Button text="🗑  Delete Selected" onAction="#handleDelete"      styleClass="btn-danger"/>
         </HBox>
 
         <!-- TableView -->

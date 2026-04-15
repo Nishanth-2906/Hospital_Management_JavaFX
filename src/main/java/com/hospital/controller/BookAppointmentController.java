@@ -1,5 +1,6 @@
 package com.hospital.controller;
 
+import com.hospital.model.Appointment;
 import com.hospital.model.Doctor;
 import com.hospital.model.Patient;
 import javafx.fxml.FXML;
@@ -22,6 +23,9 @@ public class BookAppointmentController extends BaseController implements Initial
     @FXML private ComboBox<Patient>   cmbPatient;
     @FXML private ComboBox<Doctor>    cmbDoctor;
     @FXML private DatePicker          dpDate;
+
+    private Appointment editingAppointment = null;
+    private boolean isEditing = false;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -68,6 +72,15 @@ public class BookAppointmentController extends BaseController implements Initial
         txtApptId.setEditable(false);
     }
 
+    public void loadAppointmentForEditing(Appointment appointment) {
+        this.editingAppointment = appointment;
+        this.isEditing = true;
+        txtApptId.setText(appointment.getAppointmentId());
+        cmbPatient.setValue(appointment.getPatient());
+        cmbDoctor.setValue(appointment.getDoctor());
+        dpDate.setValue(LocalDate.parse(appointment.getDate()));
+    }
+
     @FXML
     private void handleBookAppointment() {
         Patient patient = cmbPatient.getValue();
@@ -83,11 +96,19 @@ public class BookAppointmentController extends BaseController implements Initial
         }
 
         // --- Save ---
-        store.addAppointment(patient, doctor, date.toString());
-        showSuccess("Appointment booked!\n"
-                + "Patient : " + patient.getName() + "\n"
-                + "Doctor  : " + doctor.getName() + "\n"
-                + "Date    : " + date);
+        if (isEditing && editingAppointment != null) {
+            store.updateAppointment(editingAppointment.getAppointmentId(), patient, doctor, date.toString());
+            showSuccess("Appointment updated!\n"
+                    + "Patient : " + patient.getName() + "\n"
+                    + "Doctor  : " + doctor.getName() + "\n"
+                    + "Date    : " + date);
+        } else {
+            store.addAppointment(patient, doctor, date.toString());
+            showSuccess("Appointment booked!\n"
+                    + "Patient : " + patient.getName() + "\n"
+                    + "Doctor  : " + doctor.getName() + "\n"
+                    + "Date    : " + date);
+        }
 
         if (dashboard != null) dashboard.refreshStats();
         handleClear();
@@ -98,6 +119,8 @@ public class BookAppointmentController extends BaseController implements Initial
         cmbPatient.setValue(null);
         cmbDoctor.setValue(null);
         dpDate.setValue(LocalDate.now());
+        editingAppointment = null;
+        isEditing = false;
         updateApptId();
     }
 

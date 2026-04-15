@@ -78,6 +78,23 @@ public class PatientListController extends BaseController implements Initializab
     }
 
     @FXML
+    private void handleEdit() {
+        Patient selected = tablePatients.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            showWarning("Please select a patient to edit.");
+            return;
+        }
+        // Switch to Add Patient tab and load data
+        if (dashboard != null) {
+            dashboard.switchToTab("Add Patient");
+            AddPatientController addController = dashboard.getAddPatientController();
+            if (addController != null) {
+                addController.loadPatientForEditing(selected);
+            }
+        }
+    }
+
+    @FXML
     private void handleRefresh() {
         txtSearch.clear();
         tablePatients.setItems(store.getPatients());

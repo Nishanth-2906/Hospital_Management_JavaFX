@@ -1,5 +1,6 @@
 package com.hospital.controller;
 
+import com.hospital.model.Doctor;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -18,6 +19,9 @@ public class AddDoctorController extends BaseController implements Initializable
     @FXML private TextField txtAge;
     @FXML private ComboBox<String> cmbSpecialization;
 
+    private Doctor editingDoctor = null;
+    private boolean isEditing = false;
+
     // Common medical specializations
     private static final String[] SPECIALIZATIONS = {
         "General Medicine", "Cardiology", "Neurology", "Orthopedics",
@@ -33,6 +37,15 @@ public class AddDoctorController extends BaseController implements Initializable
         int next = store.getTotalDoctors() + 1;
         txtId.setText("D" + String.format("%03d", next));
         txtId.setEditable(false);
+    }
+
+    public void loadDoctorForEditing(Doctor doctor) {
+        this.editingDoctor = doctor;
+        this.isEditing = true;
+        txtId.setText(doctor.getId());
+        txtName.setText(doctor.getName());
+        txtAge.setText(String.valueOf(doctor.getAge()));
+        cmbSpecialization.setValue(doctor.getSpecialization());
     }
 
     @FXML
@@ -66,8 +79,13 @@ public class AddDoctorController extends BaseController implements Initializable
         }
 
         // --- Save ---
-        store.addDoctor(name, age, specialization);
-        showSuccess("Doctor \"" + name + "\" added successfully!");
+        if (isEditing && editingDoctor != null) {
+            store.updateDoctor(editingDoctor.getId(), name, age, specialization);
+            showSuccess("Doctor \"" + name + "\" updated successfully!");
+        } else {
+            store.addDoctor(name, age, specialization);
+            showSuccess("Doctor \"" + name + "\" added successfully!");
+        }
 
         if (dashboard != null) dashboard.refreshStats();
         handleClear();
@@ -78,6 +96,8 @@ public class AddDoctorController extends BaseController implements Initializable
         txtName.clear();
         txtAge.clear();
         cmbSpecialization.setValue("General Medicine");
+        editingDoctor = null;
+        isEditing = false;
         int next = store.getTotalDoctors() + 1;
         txtId.setText("D" + String.format("%03d", next));
     }

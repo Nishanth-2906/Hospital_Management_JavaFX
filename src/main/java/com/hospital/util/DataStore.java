@@ -45,6 +45,19 @@ public class DataStore {
         patients.add(new Patient(id, name, age, ailment));
     }
 
+    public void updatePatient(String id, String name, int age, String ailment) {
+        Patient patient = patients.stream().filter(p -> p.getId().equals(id)).findFirst().orElse(null);
+        if (patient != null) {
+            patient.setName(name);
+            patient.setAge(age);
+            patient.setAilment(ailment);
+        }
+    }
+
+    public void deletePatient(String id) {
+        patients.removeIf(p -> p.getId().equals(id));
+    }
+
     public boolean patientExists(String name) {
         return patients.stream().anyMatch(p -> p.getName().equalsIgnoreCase(name));
     }
@@ -57,6 +70,19 @@ public class DataStore {
         doctors.add(new Doctor(id, name, age, specialization));
     }
 
+    public void updateDoctor(String id, String name, int age, String specialization) {
+        Doctor doctor = doctors.stream().filter(d -> d.getId().equals(id)).findFirst().orElse(null);
+        if (doctor != null) {
+            doctor.setName(name);
+            doctor.setAge(age);
+            doctor.setSpecialization(specialization);
+        }
+    }
+
+    public void deleteDoctor(String id) {
+        doctors.removeIf(d -> d.getId().equals(id));
+    }
+
     public boolean doctorExists(String name) {
         return doctors.stream().anyMatch(d -> d.getName().equalsIgnoreCase(name));
     }
@@ -67,6 +93,19 @@ public class DataStore {
     public void addAppointment(Patient patient, Doctor doctor, String date) {
         String id = "A" + String.format("%03d", appointmentCounter++);
         appointments.add(new Appointment(id, patient, doctor, date));
+    }
+
+    public void updateAppointment(String id, Patient patient, Doctor doctor, String date) {
+        Appointment appointment = appointments.stream().filter(a -> a.getAppointmentId().equals(id)).findFirst().orElse(null);
+        if (appointment != null) {
+            appointment.setPatient(patient);
+            appointment.setDoctor(doctor);
+            appointment.setDate(date);
+        }
+    }
+
+    public void deleteAppointment(String id) {
+        appointments.removeIf(a -> a.getAppointmentId().equals(id));
     }
 
     // --- Summary stats ---

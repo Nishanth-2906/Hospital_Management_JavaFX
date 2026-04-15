@@ -1,5 +1,6 @@
 package com.hospital.controller;
 
+import com.hospital.model.Patient;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
@@ -17,12 +18,24 @@ public class AddPatientController extends BaseController implements Initializabl
     @FXML private TextField txtAge;
     @FXML private TextField txtAilment;
 
+    private Patient editingPatient = null;
+    private boolean isEditing = false;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Show what the next ID will look like (informational only)
         int next = store.getTotalPatients() + 1;
         txtId.setText("P" + String.format("%03d", next));
         txtId.setEditable(false);
+    }
+
+    public void loadPatientForEditing(Patient patient) {
+        this.editingPatient = patient;
+        this.isEditing = true;
+        txtId.setText(patient.getId());
+        txtName.setText(patient.getName());
+        txtAge.setText(String.valueOf(patient.getAge()));
+        txtAilment.setText(patient.getAilment());
     }
 
     @FXML
@@ -53,8 +66,13 @@ public class AddPatientController extends BaseController implements Initializabl
         if (ailment.isEmpty()) ailment = "Not specified";
 
         // --- Save ---
-        store.addPatient(name, age, ailment);
-        showSuccess("Patient \"" + name + "\" added successfully!");
+        if (isEditing && editingPatient != null) {
+            store.updatePatient(editingPatient.getId(), name, age, ailment);
+            showSuccess("Patient \"" + name + "\" updated successfully!");
+        } else {
+            store.addPatient(name, age, ailment);
+            showSuccess("Patient \"" + name + "\" added successfully!");
+        }
 
         // Refresh dashboard stats & clear form
         if (dashboard != null) dashboard.refreshStats();
@@ -66,6 +84,8 @@ public class AddPatientController extends BaseController implements Initializabl
         txtName.clear();
         txtAge.clear();
         txtAilment.clear();
+        editingPatient = null;
+        isEditing = false;
         int next = store.getTotalPatients() + 1;
         txtId.setText("P" + String.format("%03d", next));
     }
