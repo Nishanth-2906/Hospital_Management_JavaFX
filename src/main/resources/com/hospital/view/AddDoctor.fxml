@@ -6,53 +6,28 @@
 
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.hospital.controller.AddDoctorController"
-      spacing="0" maxWidth="520">
+      spacing="10">
 
-    <!-- Page header -->
-    <VBox styleClass="page-header" spacing="4">
-        <Label text="➕  Add New Doctor" styleClass="page-title"/>
-        <Label text="Register a new doctor profile into the system."
-               styleClass="page-subtitle"/>
-    </VBox>
+    <GridPane hgap="10" vgap="10">
+        <columnConstraints>
+            <ColumnConstraints minWidth="110" halignment="RIGHT"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+        <Label text="Doctor ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtId" GridPane.rowIndex="0" GridPane.columnIndex="1" editable="false"/>
 
-    <!-- Form card -->
-    <VBox styleClass="form-card" spacing="18">
+        <Label text="Name:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtName" GridPane.rowIndex="1" GridPane.columnIndex="1" promptText="e.g. Ananya Singh"/>
 
-        <!-- Auto ID (read-only) -->
-        <VBox spacing="4">
-            <Label text="Doctor ID (Auto-generated)" styleClass="field-label"/>
-            <TextField fx:id="txtId" styleClass="form-field" editable="false"
-                       style="-fx-background-color: #f3f4f6;"/>
-        </VBox>
+        <Label text="Age:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtAge" GridPane.rowIndex="2" GridPane.columnIndex="1" promptText="e.g. 40"/>
 
-        <!-- Name -->
-        <VBox spacing="4">
-            <Label text="Full Name *" styleClass="field-label"/>
-            <TextField fx:id="txtName" promptText="e.g. Ananya Singh"
-                       styleClass="form-field"/>
-        </VBox>
+        <Label text="Specialization:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="cmbSpecialization" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+    </GridPane>
 
-        <!-- Age -->
-        <VBox spacing="4">
-            <Label text="Age *" styleClass="field-label"/>
-            <TextField fx:id="txtAge" promptText="e.g. 40"
-                       styleClass="form-field"/>
-        </VBox>
-
-        <!-- Specialization -->
-        <VBox spacing="4">
-            <Label text="Specialization *" styleClass="field-label"/>
-            <ComboBox fx:id="cmbSpecialization" maxWidth="Infinity"
-                      styleClass="form-field"/>
-        </VBox>
-
-        <!-- Buttons -->
-        <HBox spacing="12" alignment="CENTER_RIGHT">
-            <Button text="🗑  Clear" onAction="#handleClear"
-                    styleClass="btn-secondary"/>
-            <Button text="✔  Add Doctor" onAction="#handleAddDoctor"
-                    styleClass="btn-primary"/>
-        </HBox>
-
-    </VBox>
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Clear" onAction="#handleClear"/>
+        <Button text="Add Doctor" onAction="#handleAddDoctor"/>
+    </HBox>
 </VBox>

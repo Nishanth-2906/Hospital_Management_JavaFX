@@ -7,24 +7,20 @@
       fx:controller="com.hospital.controller.DoctorListController"
       spacing="0">
 
-    <!-- Page header -->
-    <VBox styleClass="page-header" spacing="4">
-        <Label text="📋  Doctor Directory" styleClass="page-title"/>
-        <Label text="Browse, search and manage all registered doctors."
-               styleClass="page-subtitle"/>
+    <VBox spacing="4">
+        <Label text="Doctor Directory" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+        <Label text="Browse, search and manage all registered doctors."/>
     </VBox>
 
-    <VBox styleClass="form-card" spacing="12" VBox.vgrow="ALWAYS">
+    <VBox spacing="12" VBox.vgrow="ALWAYS">
 
-        <!-- Toolbar row -->
         <HBox spacing="10" alignment="CENTER_LEFT">
-            <TextField fx:id="txtSearch" promptText="🔍  Search by name, ID or specialization..."
-                       styleClass="form-field" prefWidth="340"/>
+            <TextField fx:id="txtSearch" promptText="Search by name, ID or specialization..." prefWidth="340"/>
             <Region HBox.hgrow="ALWAYS"/>
-            <Label fx:id="lblCount" styleClass="count-label"/>
-            <Button text="🔄  Refresh" onAction="#handleRefresh" styleClass="btn-secondary"/>
-            <Button text="✏  Edit Selected" onAction="#handleEdit" styleClass="btn-primary"/>
-            <Button text="🗑  Delete Selected" onAction="#handleDelete" styleClass="btn-danger"/>
+            <Label fx:id="lblCount"/>
+            <Button text="Refresh" onAction="#handleRefresh"/>
+            <Button text="Edit Selected" onAction="#handleEdit"/>
+            <Button text="Delete Selected" onAction="#handleDelete"/>
         </HBox>
 
         <!-- TableView -->
